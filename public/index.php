@@ -3,66 +3,6 @@
 
 Contrôleur frontal */
 
-/*if(isset($_GET['p'])){
-    
-    switch($_GET['p']){
-
-        case 'bio':
-            $title = "astrobiologie";
-            include('../view/astrobiologie.php');
-            break;
-        case 'nomie':
-            $title="astronomie";
-            include('../view/astronomie.php');
-            break;
-        case 'ex':
-            $title="extragalactique";
-            include('../view/extragalactique.php');
-            break;
-        case 'gala':
-            $title="galactique";
-            include('../view/galactique.php');
-            break;
-        case 'sol':
-            $title="solaire";
-            include('../view/solaire.php');
-            break;
-        case 'stel':
-            $title="stellaire";
-            include('../view/stellaire.php');
-            break;
-        case 'cos':
-            $title = "cosmologie"
-            include('../view/cosmologie.php');
-            break;
-        case 'planet':
-            $title = "planetologie";
-            include('../view/planetologie.php');
-            break;
-        case 'post':
-            $title = "sample";
-            include('../view/sample.php');
-            break;
-        case 'contact':
-            $title = "contact";
-            include('../view/contact.php');
-            break;
-                        
-                                   
-       
-        default:
-            $title="page404";
-            include('../view/page-404.php');
-    }
-
-}else{
-    
-    $title = "homepage"; 
-    include('../view/homepage.view.php');
-
-}
-*/
-
 /*
 chargement des dépendances
 */
@@ -106,37 +46,37 @@ if(isset($_GET['p'])){
     
     switch($_GET['p']){
 
-        case 'bio':
+        case 'astrobiologie':
             $title = "astrobiologie";
             include('../view/astrobiologie.php');
             break;
-        case 'nomie':
+        case 'astronomie':
             $title="astronomie";
             include('../view/astronomie.php');
             break;
-        case 'ex':
+        case 'extragalactique':
             $title="extragalactique";
             include('../view/extragalactique.php');
             break;
-        case 'gala':
+        case 'galactique':
             $title="galactique";
             include('../view/galactique.php');
             break;
-        case 'sol':
+        case 'solaire':
             $title="solaire";
             include('../view/solaire.php');
             break;
-        case 'stel':
+        case 'stellaire':
             $title="stellaire";
             include('../view/stellaire.php');
             break;
-        case 'planet':
+        case 'planetologie':
             $title = "planetologie";
             include('../view/planetologie.php');
             break;
         case 'post':
-            $title = "sample";
-            include('../view/sample.php');
+            $title = "post";
+            include('../view/post.php');
             break;
         case 'contact':
             $title = "contact";
