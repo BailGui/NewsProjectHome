@@ -24,7 +24,7 @@ require_once "menu.view.php";
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <div class="site-heading">
                             <h1>AstroNews</h1>
-                            <span class="subheading">Homepage</span>
+                            <span class="subheading">Accueil</span>
                             <p>Site d'actualités francophone d'astrologie</p>
                         </div>
                     </div>
@@ -42,7 +42,7 @@ require_once "menu.view.php";
                     <div class="post-preview">
                         <a href="?detailArticle=<?=$item['slug']?>">
                             <h2 class="post-title"><?=$item['title']?></h2>
-                            <h5 class="post-subtitle"><?=cutTheText($item['content'],255)?>... Lire la suite</h5>
+                            <h5 class="post-subtitle"><?=cutTheText($item['content'],255)?><a href="?p=<?=$item['slug']?>">... Lire la suite</a></h5>
                         </a>
                         <p class="post-meta">
                             Posté par

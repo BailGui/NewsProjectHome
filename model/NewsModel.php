@@ -79,7 +79,7 @@ function cutTheText(string $text, int $nbCharacter=200, bool $cutWord = false): 
 function getNews (PDO $db) {
   
 
-    $sql = "SELECT n.`content`, n.`title`, n.`date_published`, u.`thename`, u.`login`
+    $sql = "SELECT n.`content`, n.`title`, n.`slug`, n.`date_published`, u.`thename`, u.`login`
             FROM `news` n
             LEFT JOIN `user` u ON u.`iduser` = n.`user_iduser`
             ";
