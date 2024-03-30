@@ -54,21 +54,25 @@ if(isset($_GET['p'])){
             $title="astronomie";
             include('../view/astronomie.php');
             break;
-        case 'extragalactique':
+        case 'astronomie-extragalactique':
             $title="extragalactique";
             include('../view/extragalactique.php');
             break;
-        case 'galactique':
+        case 'astronomie-galactique':
             $title="galactique";
             include('../view/galactique.php');
             break;
-        case 'solaire':
+        case 'astronomie-solaire':
             $title="solaire";
             include('../view/solaire.php');
             break;
-        case 'stellaire':
+        case 'astronomie-stellaire':
             $title="stellaire";
             include('../view/stellaire.php');
+            break;
+        case 'cosmologie':
+            $title="cosmologie";
+            include('../view/cosmologie.php');
             break;
         case 'planetologie':
             $title = "planetologie";
