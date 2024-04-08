@@ -1,7 +1,9 @@
 <?php
 /*
 
-Contrôleur frontal */
+Contrôleur frontal
+
+*/
 
 /*
 chargement des dépendances
@@ -29,75 +31,74 @@ try {
 // chargement des catégories pour le menu
 $menuSlug = getAllCategoriesBySlug($db);
 
-// chargement des news pour la page d'accueil
-$newsHomepage = getAllNewsHomePage($db);
-
-// chargement des articles de news
-$getNews = getNews ($db);
-
-// var_dump($menuSlug);
-// var_dump($newsHomepage);
-//var_dump($getNews);
-
-/*
-Appel de la vue
-*/
-if(isset($_GET['p'])){
+// router temporaire
+if(isset($_GET['section'])){
     
-    switch($_GET['p']){
+    switch($_GET['section']){
 
-        case 'astrobiologie':
-            $title = "astrobiologie";
-            include('../view/astrobiologie.php');
-            break;
-        case 'astronomie':
-            $title="astronomie";
-            include('../view/astronomie.php');
-            break;
-        case 'astronomie-extragalactique':
-            $title="extragalactique";
-            include('../view/extragalactique.php');
-            break;
-        case 'astronomie-galactique':
-            $title="galactique";
-            include('../view/galactique.php');
-            break;
-        case 'astronomie-solaire':
-            $title="solaire";
-            include('../view/solaire.php');
-            break;
-        case 'astronomie-stellaire':
-            $title="stellaire";
-            include('../view/stellaire.php');
-            break;
-        case 'cosmologie':
-            $title="cosmologie";
-            include('../view/cosmologie.php');
-            break;
-        case 'planetologie':
-            $title = "planetologie";
-            include('../view/planetologie.php');
-            break;
-        case 'post':
-            $title = "post";
-            include('../view/post.php');
-            break;
-        case 'contact':
-            $title = "contact";
-            include('../view/contact.php');
+        case 'news':
+            $title = "news";
+            include('../view/section.view.php');
             break;
                         
-                                   
-       
         default:
             $title="page404";
-            include('../view/page-404.php');
+            include('../view/error.view.php');
     }
 
 }else{
     
     $title = "homepage"; 
     include('../view/homepage.view.php');
+}
+        // récupération/ protection de la variable slug de category
+        $categ = htmlspecialchars(strip_tags(trim($_GET['section'])),ENT_QUOTES);
+
+        // chargement de la catégorie via le slug
+        $category = getCategoryBySlug($db,$categ);
+
+        // si on récupère du texte
+        if(is_string($category)){
+            // on a une erreur SQL, on peut l'afficher (pas nécessaire)
+            $message = $category;
+        // si on récupère false, la rubrique n'existe pas    
+        }elseif($category===false){
+            $message = "Rubrique inconnue";
+            include_once "../view/404.view.php";
+            // Fermeture de connexion
+            $db = null;
+            // arrêt du script
+            exit();
+        }
+
+        // Chargement des news de la catégorie actuelle via son Slug
+        $getNews = getNewsFromCategorySlug($db, $categ);
+
+        if(empty($getNews)){
+            $message = "Pas encore d'article dans cette section";
+        }
+
+        // var_dump($category);
+        /*
+        Appel de la vue
+        */
+        include_once "../view/section.view.php";
+        else{
+/*
+homepage
+*/
+        
+
+        // chargement des news pour la page d'accueil
+        $newsHomepage = getAllNewsHomePage($db);
+
+        // var_dump($menuSlug);
+        // var_dump($newsHomepage);
+
+        /*
+        Appel de la vue
+        */
+        include_once "../view/homepage.view.php";
 }
 
 // Fermeture de connexion

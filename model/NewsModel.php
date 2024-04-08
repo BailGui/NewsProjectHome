@@ -76,11 +76,12 @@ function cutTheText(string $text, int $nbCharacter=200, bool $cutWord = false): 
     return $output;
 }
 
-function getNews (PDO $db) {
+function getNewsBySection (PDO $db, string $slug): array|string {
   
 
-    $sql = "SELECT n.`content`, n.`title`, n.`slug`, n.`date_published`, u.`thename`, u.`login`
-            FROM `news` n
+    $sql = "SELECT n.`content`, n.`title`, n.`slug`, n.`date_published`, u.`thename`, u.`login`, c.`title`, c.`slug`
+            FROM `news` n 
+            LEFT JOIN `category` c 
             LEFT JOIN `user` u ON u.`iduser` = n.`user_iduser`
             ";
     try{
